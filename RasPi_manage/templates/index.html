@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://openlayers.org/en/v4.6.5/css/ol.css" type="text/css">
+    <script src="https://openlayers.org/en/v4.6.5/build/ol.js"></script>
+	
+</head>
+<body>
+<div id="header">
+    <div id="headerContent">
+        <h2>Сybeeeer garden Drone. Котолампа</h2>
+    </div>
+</div>
+
+<div id="page">
+    <div id="sideBar">        
+        <div class="img-container">
+          <img id="bg" src="{{ url_for('video_feed') }}" alt="videostream from camera drone"> 
+      </div>
+    </div>
+
+    <div id="map" class="map"></div>
+    <div id="mouse-position"></div>
+    <footer>Создано Командой "Котолампа"</footer>
+    <script>
+        var layers = [
+          new ol.layer.Tile({
+            source: new ol.source.OSM()
+          }),
+          new ol.layer.Tile({
+            extent: [4334247.070, 5975309.588],
+            source: new ol.source.TileWMS({
+              url: 'https://ahocevar.com/geoserver/wms',
+              params: {'LAYERS': 'topp:states', 'TILED': true},
+              serverType: 'geoserver',
+              // Countries have transparency, so do not fade tiles:
+              transition: 0
+            })
+          })
+        ];
+        var map = new ol.Map({
+          layers: layers,
+          target: 'map',
+          view: new ol.View({
+            center: [4334247.070, 5975309.588],
+            zoom: 18
+          })
+        });
+
+
+        var markers = new ol.layer.Vector({
+      source: new ol.source.Vector(),
+      style: new ol.style.Style({
+        image: new ol.style.Icon({
+          anchor: [0.5, 1],
+          src: "marker.png"
+        })
+      })
+    });
+    map.addLayer(markers);
+    
+    var marker = new ol.Feature(new ol.geom.Point(([4334246.734786349, 5975224.775442765])));
+    markers.getSource().addFeature(marker);
+
+        
+      </script>
+      <script type="module" src="main.js"></script>
+</div>   
+
+</body>
+</html>
