@@ -1,6 +1,8 @@
 Проект выполнен командой "Котолампа" на хакатоне CyberGarden Drone 2024"
-Костылев Александр https://github.com/ArcoKostyleff/hackathon_drone
-Подколзина Любовь 
+
+Участники:
+Костылев Александр (https://github.com/ArcoKostyleff/hackathon_drone),
+Подколзина Любовь (https://github.com/DevLuPA/CyGarden/RasPi_manage),
 Рыбалкин Алексей (Аппаратная часть)
 Авдиенко Александр (Аппаратная часть)
 
